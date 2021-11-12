@@ -1,0 +1,7 @@
+.cart-content {
+    padding: 10px;
+}
+
+.cart-item {
+    display: flex;
+}

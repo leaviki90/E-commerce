@@ -1,0 +1,30 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 50px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  background-color: rgb(248, 252, 252);
+  box-shadow: 0 1px 6px 0 rgb(32 33 36 / 17%);
+}
+
+.nav div {
+  position: relative;
+  cursor: pointer;
+}
+.shopping-cart {
+  max-width: 45px;
+}
+.nav span {
+  width: 20 px;
+  height: 20px;
+  background: red;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 19px;
+  left: 26px;
+}
