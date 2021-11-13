@@ -1,7 +1,34 @@
 .cart-content {
-    padding: 10px;
+  padding: 10px;
 }
 
 .cart-item {
-    display: flex;
+  display: flex;
+}
+
+.cart-empty {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-bottom: 15px;
+}
+
+.cart-empty-img {
+  width: 50%;
+  max-width: 190px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  filter: grayscale(1);
+}
+
+.cart-total {
+  font-weight: bold;
+  font-size: 19.2px;
+  padding: 15px;
+  border: 1px solid #46940d;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }

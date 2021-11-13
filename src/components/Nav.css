@@ -10,6 +10,7 @@
   right: 0;
   background-color: rgb(248, 252, 252);
   box-shadow: 0 1px 6px 0 rgb(32 33 36 / 17%);
+  z-index: 2;
 }
 
 .nav div {
@@ -22,9 +23,15 @@
 .nav span {
   width: 20 px;
   height: 20px;
-  background: red;
+  background: orange;
+  color: #0d3c94;
   border-radius: 50%;
   position: absolute;
   bottom: 19px;
   left: 26px;
+  font-weight: bold;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

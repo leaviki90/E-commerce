@@ -14,10 +14,23 @@
 .modal {
   background-color: #ffffff;
   max-height: 90%;
+  overflow: auto;
+  width: 618px;
   max-width: 90%;
   min-width: 200px;
   border-radius: 10px;
-  padding: 20px;
-  background-color: #7aa855;
-  border: 2px solid rgba(35, 111, 12, 0.4);
+  padding: 10px;
+  position: relative;
+  min-height: 150px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  font-weight: bold;
+  padding: 10px;
 }

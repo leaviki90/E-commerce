@@ -2,7 +2,7 @@
 import { useParams } from "react-router";
 import { useFetch } from "../hooks/useFetch";
 import { useState } from "react";
-//import { Link } from "react";
+
 
 const ArticlePage = ({cart, changeCart}) => {
 
@@ -10,7 +10,13 @@ const ArticlePage = ({cart, changeCart}) => {
     const url = 'https://fakestoreapi.com/products/' + id;
     const {data: article, isPending, error} = useFetch(url);
 
-    const [amount, setAmount] = useState(0);
+    const [amountValue, setAmountValue] = useState(1);
+
+    let amount = 0;
+
+    if(cart && id) {
+        amount = cart.find(item => item.id === +id)?.amount || 0;
+    }
 
     return ( 
         <div className="container">
@@ -41,17 +47,20 @@ const ArticlePage = ({cart, changeCart}) => {
                             type="number" 
                             name="amount-input" 
                             id="amountInput" 
-                            value={amount}
-                            onChange={(e) => setAmount(e.target.value)}
+                            value={amountValue}
+                            onChange={(e) => setAmountValue(e.target.value < 1 ? 1 : Math.floor(e.target.value))}
                         />
-                        <span>{(amount * article.price).toFixed(2)} $</span>
+                        <span>{(amountValue * article.price).toFixed(2)} $</span>
                         <button
-                            onClick={() => changeCart({id: article.id, title: article.title, amount: +amount, price: +article.price})}
+                            onClick={() => {
+                                changeCart({id: article.id, amount: amount + +amountValue, price:(amount + amountValue)*article.price})
+                                }
+                            }
                         >
                             Add to cart
                         </button>
                     </div>
-                    <div className="article-category">{article.category}</div>
+                    <div className="article-category-normal">{article.category}</div>
                     <h3 className="article-title">{article.title}</h3>
                     <div className="article-subtitle">{article.description}</div>
                 </div>

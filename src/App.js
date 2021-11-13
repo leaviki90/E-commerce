@@ -1,19 +1,36 @@
 import "./App.css";
+import { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ArticlePage from "./pages/ArticlePage";
-import { useState, useEffect } from "react";
-
 import Nav from "./components/Nav";
 
+// Test IF LocalStorage is accessible
+function isTest() {
+  let test = "test";
+  try {
+    localStorage.setItem(test, test);
+    localStorage.removeItem(test);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
 function App() {
-  const [cart, setCart] = useState([
-    { id: 1, title: "test1", price: 5, amount: 3 },
-    { id: 9, title: "test2", price: 15, amount: 1 },
-  ]);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    console.log(cart);
+    if (isTest) {
+      const cartData = JSON.parse(localStorage.getItem("cartData")) || [];
+      setCart(cartData);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isTest) {
+      localStorage.setItem("cartData", JSON.stringify(cart));
+    }
   });
 
   const upsert = (arr, element) => {
@@ -34,7 +51,7 @@ function App() {
         <Nav cart={cart} setCart={setCart} />
         <Switch>
           <Route exact path="/">
-            <HomePage />
+            <HomePage cart={cart} changeCart={changeCart} />
           </Route>
           <Route path="/article/:id">
             <ArticlePage cart={cart} changeCart={changeCart} />
