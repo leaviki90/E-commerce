@@ -3,11 +3,10 @@ import { useParams } from "react-router";
 import { useFetch } from "../hooks/useFetch";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
 import "./ArticlePage.css"
 
 
-const ArticlePage = ({cart, changeCart}) => {
+const ArticlePage = ({cart, changeCart, badgeAnimate}) => {
 
     const { id } = useParams();
     const url = 'https://fakestoreapi.com/products/' + id;
@@ -19,6 +18,11 @@ const ArticlePage = ({cart, changeCart}) => {
 
     if(cart && id) {
         amount = cart.find(item => item.id === +id)?.amount || 0;
+    }
+
+    const handeAdd = () => {
+        changeCart({id: article.id, amount: amount + +amountValue, price:(amount + amountValue)*article.price});
+        badgeAnimate();
     }
 
     return ( 
@@ -65,10 +69,7 @@ const ArticlePage = ({cart, changeCart}) => {
                         </div>
                        
                         <button className="btn btn-default"
-                            onClick={() => {
-                                changeCart({id: article.id, amount: amount + +amountValue, price:(amount + amountValue)*article.price})
-                                }
-                            }
+                            onClick={() => handeAdd()}
                         >
                             Add to cart
                         </button>

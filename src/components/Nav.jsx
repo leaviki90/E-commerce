@@ -5,7 +5,7 @@ import Modal from './Modal';
 import Cart from './Cart';
 import './Nav.css'
 
-const Nav = ({cart, setCart}) => {
+const Nav = ({cart, setCart, showBadge}) => {
 
     const [showModal, setShowModal] = useState(false);
 
@@ -13,10 +13,13 @@ const Nav = ({cart, setCart}) => {
         <nav className="nav">
             <h1 className="nav-logo">
                 <Link to="/">
-                 Store
+                Store
                 </Link>
             </h1>
-            <div onClick={() => setShowModal(true)}>
+            <div id="cartBtn" onClick={() => setShowModal(true)}>
+                <div className={`${showBadge ? "show" : ""} cart-badge`}>
+                    <span>Item(s) added</span>
+                </div>
                 <img
                     src="/shopping-cart.png"
                     alt="shopping-cart"
@@ -25,7 +28,7 @@ const Nav = ({cart, setCart}) => {
                         cart.length < 1 ? {filter: "grayscale(1)"} : null
                     }
                     />
-                {cart.length ? <span>
+                {cart.length ? <span className="count-badge">
                     {cart.length}
                 </span>
                 :

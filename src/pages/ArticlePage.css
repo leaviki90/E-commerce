@@ -1,5 +1,5 @@
 .full-article {
-  margin-top: 30px;
+  margin-top: 10px;
 }
 .full-article .go-back {
   position: absolute;
@@ -16,6 +16,7 @@
   flex: 1 0 49%;
   padding: 20px 0;
   position: relative;
+  border-radius: 10px;
 }
 .full-article figure img {
   object-fit: contain;
@@ -37,7 +38,7 @@
   text-align: start;
   border-radius: 5px;
   border: 1px solid gray;
-  padding: 5px 0;
+  padding: 5px;
   outline: none;
   background-color: #fafafa;
 }
@@ -55,10 +56,17 @@
 .full-article .article-subtitle {
   text-align: justify;
   overflow: visible;
+  text-overflow: unset;
+  -webkit-line-clamp: unset;
+  display: block;
+  -webkit-box-orient: unset;
+  height: unset;
 }
 
 @media (min-width: 600px) {
   .full-article {
     display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

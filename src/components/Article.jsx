@@ -7,11 +7,26 @@ const Article = (props) => {
     if(props.cart && props.id) {
         amount = props.cart.find(item => item.id === +props.id)?.amount || 0;
     }
+    const handeAdd = () => {
+        props.changeCart({id: props.id, amount: amount + 1, price: (amount + 1)*props.price});
+        props.badgeAnimate();
+    }
+
+    const scrollToTop = () =>{
+        window.scrollTo({
+            top: 0
+        })
+    }
+
+    const handleCategoryClick = () => {
+        props.setCategory(props.category);
+        scrollToTop();
+    }
     return (
         <div className="article-card">
             <div 
                 className="btn btn-add"
-                onClick={() => props.changeCart({id: props.id, amount: amount + 1, price: (amount + 1)*props.price})}
+                onClick={() => handeAdd()}
             >
                 +
             </div>
@@ -37,7 +52,7 @@ const Article = (props) => {
                     <div className="article-subtitle">{props.description}</div>
                     <div 
                     className="article-category"
-                    onClick={()=>props.setCategory(props.category)}
+                    onClick={()=>handleCategoryClick()}
                     >
                         {props.category}
                     </div>

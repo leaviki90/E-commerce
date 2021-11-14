@@ -28,7 +28,7 @@
 .shopping-cart {
   max-width: 45px;
 }
-.nav span {
+.nav .count-badge {
   width: 20px;
   height: 20px;
   background: orange;
@@ -38,8 +38,39 @@
   bottom: 19px;
   left: 26px;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+#cartBtn {
+  position: relative;
+}
+#cartBtn .cart-badge {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translate(-100%, -50%);
+  cursor: default;
+  white-space: nowrap;
+  background-color: orange;
+  border-radius: 27px 0 0 27px;
+  z-index: -1;
+  font-style: italic;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  overflow: hidden;
+  max-width: 0;
+  transition: all 0.4s ease-out;
+}
+
+#cartBtn .cart-badge.show {
+  max-width: 120px;
+}
+
+#cartBtn .cart-badge span {
+  display: inline-block;
+  padding: 4px 19px;
+  padding-left: 10px;
 }

@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { useFetch } from "../hooks/useFetch";
 import Article from "../components/Article";
+import Modal from '../components/Modal';
+import Filter from '../components/Filter';
 
-const HomePage = ({cart, changeCart}) => {
+const HomePage = ({cart, changeCart, badgeAnimate}) => {
 
     const [search, setSearch] = useState('');
     const [category, setCategory] = useState('');
+    const [showModal, setShowModal] = useState(false);
 
     const url = category ? `https://fakestoreapi.com/products/category/${category}` : 'https://fakestoreapi.com/products';
 
@@ -30,6 +33,7 @@ const HomePage = ({cart, changeCart}) => {
                 setCategory={setCategory}
                 changeCart={changeCart}
                 cart={cart}
+                badgeAnimate={badgeAnimate}
             />
         </div>
     )
@@ -48,9 +52,12 @@ const HomePage = ({cart, changeCart}) => {
                         <div>
                             <span className="f-bold">Category:</span> 
                             <span> {category}</span>
-                            <span class="btn-clear-filter" onClick={() => setCategory('')}>clear filter</span>
+                            <span className="btn-clear-filter" onClick={() => setCategory('')}>clear filter</span>
                         </div>
-                        : <span><span className="f-bold">Category: </span>All</span>
+                        : <span className="d-flex flex-center">
+                            <span><span className="f-bold">Category: </span><span>All</span></span>
+                            <span className="btn-change-filter" onClick={() => setShowModal(true)}>CHANGE</span>
+                        </span>
                     }
                 </div>
             </div>
@@ -71,6 +78,16 @@ const HomePage = ({cart, changeCart}) => {
                         card(article)
                     ))}
                 </div> : ''}
+                {showModal &&
+                <Modal
+                    showModal={setShowModal}
+                    modalTitle="Filter by category"
+                >
+                    <Filter 
+                    setCategory={setCategory}
+                    showModal={setShowModal}
+                    />
+                </Modal>}
         </div>
     );
 }

@@ -19,6 +19,7 @@ function isTest() {
 
 function App() {
   const [cart, setCart] = useState([]);
+  const [showBadge, setShowBadge] = useState(false);
 
   useEffect(() => {
     if (isTest) {
@@ -45,16 +46,36 @@ function App() {
     setCart((curr) => upsert(curr, item));
   };
 
+  useEffect(() => {
+    if (showBadge) {
+      setTimeout(() => {
+        setShowBadge(false);
+      }, 1500);
+    }
+  }, [showBadge]);
+
+  const badgeAnimate = () => {
+    setShowBadge(true);
+  };
+
   return (
     <>
       <BrowserRouter>
-        <Nav cart={cart} setCart={setCart} />
+        <Nav cart={cart} setCart={setCart} showBadge={showBadge} />
         <Switch>
           <Route exact path="/">
-            <HomePage cart={cart} changeCart={changeCart} />
+            <HomePage
+              cart={cart}
+              changeCart={changeCart}
+              badgeAnimate={badgeAnimate}
+            />
           </Route>
           <Route path="/article/:id">
-            <ArticlePage cart={cart} changeCart={changeCart} />
+            <ArticlePage
+              cart={cart}
+              changeCart={changeCart}
+              badgeAnimate={badgeAnimate}
+            />
           </Route>
         </Switch>
       </BrowserRouter>
