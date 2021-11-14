@@ -2,6 +2,9 @@
 import { useParams } from "react-router";
 import { useFetch } from "../hooks/useFetch";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
+import "./ArticlePage.css"
 
 
 const ArticlePage = ({cart, changeCart}) => {
@@ -26,7 +29,11 @@ const ArticlePage = ({cart, changeCart}) => {
         {error && <div>{error}</div> }
         {article ? 
         
-            <div className="article-inside">
+            <div className="article-inside full-article">
+                <figure>
+                <Link to="/" className="go-back">
+              <img src="../Go-back-icon.png" alt="back-icon" />
+            </Link>
                 <img 
                 alt={article.title} 
                 className="article-thumb" 
@@ -40,9 +47,12 @@ const ArticlePage = ({cart, changeCart}) => {
                     }
                 }
                 />
+                </figure>
                 <div className="article-content">
                     <div className="article-price">{article.price} $</div>
                     <div>
+
+                        <div className="article-input-group">
                         <input 
                             type="number" 
                             name="amount-input" 
@@ -51,7 +61,10 @@ const ArticlePage = ({cart, changeCart}) => {
                             onChange={(e) => setAmountValue(e.target.value < 1 ? 1 : Math.floor(e.target.value))}
                         />
                         <span>{(amountValue * article.price).toFixed(2)} $</span>
-                        <button
+
+                        </div>
+                       
+                        <button className="btn btn-default"
                             onClick={() => {
                                 changeCart({id: article.id, amount: amount + +amountValue, price:(amount + amountValue)*article.price})
                                 }

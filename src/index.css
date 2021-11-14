@@ -152,17 +152,18 @@ body {
 
 .btn-add {
   position: absolute;
-  right: 15px;
-  top: 15px;
+  right: 10px;
+  top: 10px;
   border-radius: 50px;
-  width: 35px;
-  height: 35px;
+  width: 45px;
+  height: 45px;
   background: orange;
   color: #0d3c94;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
+  font-size: 23px;
 }
 
 .btn-clear-filter {

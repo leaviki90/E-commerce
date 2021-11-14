@@ -13,8 +13,7 @@ const Nav = ({cart, setCart}) => {
         <nav className="nav">
             <h1 className="nav-logo">
                 <Link to="/">
-                    Logo
-
+                 Store
                 </Link>
             </h1>
             <div onClick={() => setShowModal(true)}>
